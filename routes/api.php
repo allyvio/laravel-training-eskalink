@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('customers', [CustomerController::class, 'getCustomers']);
 Route::get('address-belongsto-customers', [CustomerController::class, 'addresBelongsToCustomers']);
+Route::put('dissociate/{id}', [CustomerController::class, 'dissociate']);
 
 Route::post('customers', [CustomerController::class, 'storeCustomer']);
 Route::get('customer/{id}', [CustomerController::class, 'getCustomerById']);

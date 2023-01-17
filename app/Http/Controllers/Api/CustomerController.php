@@ -73,14 +73,29 @@ class CustomerController extends Controller
             'first_name' => 'required',
             'last_name' => 'required|max:128',
             'id_card_number' => 'required|unique:customers',
-            'address' => 'required',
             'date_of_birth' => 'required|date_format:Y-m-d',
+            'country' => 'required',
+            'city' => 'required',
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
             return $this->responseHelpers->error(false, $validator->errors(), 400);
         }
         $customer = Customer::create($data);
+        $address = new Address([
+            'country' => $request->get('country'),
+            'city' => $request->get('city')
+        ]);
+        $address->customer()->associate($customer);
+        $address->save();
         return $this->responseHelpers->success(true, "successfully stored data customer", $customer, 201);
+    }
+
+    public function dissociate($id)
+    {
+        $address = Address::find($id);
+        $address->customer()->dissociate();
+        $address->save();
+        return 'sukses';
     }
 }
