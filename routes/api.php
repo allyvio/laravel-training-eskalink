@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('customers', [CustomerController::class, 'getCustomers']);
 Route::get('address-belongsto-customers', [CustomerController::class, 'addresBelongsToCustomers']);
 Route::put('dissociate/{id}', [CustomerController::class, 'dissociate']);
+
+// manajement
+Route::get('user-has-products', [ProductController::class, 'userHasProducts']);
+Route::get('product-belongsto-user/{id}', [ProductController::class, 'productBelongsToUser']);
 
 Route::post('customers', [CustomerController::class, 'storeCustomer']);
 Route::get('customer/{id}', [CustomerController::class, 'getCustomerById']);
