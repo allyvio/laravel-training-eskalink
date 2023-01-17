@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use HasFactory;
-    protected $fillable = ['first_name', 'last_name', 'id_card_number', 'address', 'date_of_birth', 'hobby'];
+    protected $fillable = ['first_name', 'last_name', 'id_card_number', 'date_of_birth', 'hobby'];
+
+    public function address()
+    {
+        return $this->hasOne(Address::class);
+    }
 }

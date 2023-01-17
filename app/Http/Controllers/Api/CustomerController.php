@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Helpers\ResponseHelper;
+use App\Models\Address;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -18,13 +19,26 @@ class CustomerController extends Controller
     }
     public function getCustomers()
     {
-        //query sql
-        // $customer = DB::select('select * from customers');
-
-        //query builder
-        //model eloquent
-        $customer = Customer::all('id', 'first_name', 'last_name', 'id_card_number as ktp', 'date_of_birth as tanggal_lahir', 'hobby');
-        return $this->responseHelpers->success(true, "successfully get data customers", $customer);
+        //all, perlu olahan data
+        $customers = Customer::all();
+        //with, langsung parse variable ke dalam response
+        // $customers = Customer::with('address')->get();
+        $resp = [];
+        foreach ($customers as $customer) {
+            $resp[] = [
+                'id' => $customer->id,
+                'first_name' => $customer->first_name,
+                'last_name' => $customer->last_name,
+                'id_card_number' => $customer->id_card_number,
+                'date_of_birth' => $customer->date_of_birth,
+                'hobby' => $customer->hobby,
+                'address' => [
+                    'country' => $customer->address->country,
+                    'city' => $customer->address->city
+                ]
+            ];
+        }
+        return $this->responseHelpers->success(true, "successfully get data customers", $resp);
     }
     public function getCustomerById($id)
     {
@@ -45,6 +59,13 @@ class CustomerController extends Controller
         }
         return $this->responseHelpers->success(true, "successfully get data customer", $customer);
     }
+
+    public function addresBelongsToCustomers()
+    {
+        $address = Address::find(1);
+        return $address->customer;
+    }
+
     public function storeCustomer(Request $request)
     {
         $data = $request->all();
