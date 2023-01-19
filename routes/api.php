@@ -26,6 +26,7 @@ Route::get('address-belongsto-customers', [CustomerController::class, 'addresBel
 Route::put('dissociate/{id}', [CustomerController::class, 'dissociate']);
 
 // manajement
+Route::get('products', [ProductController::class, 'getProducts']);
 Route::get('user-has-products', [ProductController::class, 'userHasProducts']);
 Route::get('product-belongsto-user/{id}', [ProductController::class, 'productBelongsToUser']);
 
