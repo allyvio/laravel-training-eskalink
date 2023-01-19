@@ -29,6 +29,7 @@ Route::put('dissociate/{id}', [CustomerController::class, 'dissociate']);
 Route::get('products', [ProductController::class, 'getProducts']);
 Route::post('products-attach', [ProductController::class, 'productAttachTag']);
 Route::put('products-detach/{id}', [ProductController::class, 'productDetachTag']);
+Route::put('products-sync/{id}', [ProductController::class, 'productSynchTag']);
 Route::get('user-has-products', [ProductController::class, 'userHasProducts']);
 Route::get('product-belongsto-user/{id}', [ProductController::class, 'productBelongsToUser']);
 

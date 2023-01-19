@@ -50,12 +50,18 @@ class ProductController extends Controller
     {
         $product = Product::find($request->get('product_id'));
         $product->tags()->attach($request->get('tag_id'));
-        return $this->responseHelpers->success(true, "success update data tags", [], 201);
+        return $this->responseHelpers->success(true, "success attach data tags", [], 201);
     }
     public function productDetachTag(Request $request, $id)
     {
         $product = Product::find($id);
         $product->tags()->detach($request->get('tag_id'));
-        return $this->responseHelpers->success(true, "success update data product", [], 200);
+        return $this->responseHelpers->success(true, "success detach data product", []);
+    }
+    public function productSynchTag(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $product->tags()->sync($request->get('tag_id'));
+        return $this->responseHelpers->success(true, "success sync data product", []);
     }
 }
