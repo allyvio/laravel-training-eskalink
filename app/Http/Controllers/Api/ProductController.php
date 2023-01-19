@@ -14,7 +14,7 @@ class ProductController extends Controller
     private $responseHelpers;
     function __construct(ResponseHelper $responseHelper)
     {
-        return $this->responseHelpers = $responseHelper;
+        $this->responseHelpers = $responseHelper;
     }
     public function userHasProducts()
     {
