@@ -52,4 +52,10 @@ class ProductController extends Controller
         $product->tags()->attach($request->get('tag_id'));
         return $this->responseHelpers->success(true, "success update data tags", [], 201);
     }
+    public function productDetachTag(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $product->tags()->detach($request->get('tag_id'));
+        return $this->responseHelpers->success(true, "success update data product", [], 200);
+    }
 }
