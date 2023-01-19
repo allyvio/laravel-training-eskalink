@@ -46,4 +46,10 @@ class ProductController extends Controller
         }
         return $this->responseHelpers->success(true, "success get data products", $book);
     }
+    public function productAttachTag(Request $request)
+    {
+        $product = Product::find($request->get('product_id'));
+        $product->tags()->attach($request->get('tag_id'));
+        return $this->responseHelpers->success(true, "success update data tags", []);
+    }
 }
