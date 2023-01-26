@@ -11,8 +11,9 @@
 </head>
 
 <body>
-    <div id="app" class="vh-100 d-flex align-items-center">
-        <example-component></example-component>
+    <div id="app">
+        <b-navbar></b-navbar>
+        <router-view></router-view>
     </div>
 </body>
 

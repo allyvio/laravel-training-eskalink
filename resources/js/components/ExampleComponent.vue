@@ -1,23 +1,23 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div>
+    <!-- <badge-component :totalNotification="10"></badge-component> -->
+    <button-component text="Primary" :type="'primary'"></button-component>
+    <button-component text="Secondary" :type="'secondary'"></button-component>
+    <button-component text="Warning" :type="'warning'"></button-component>
+    <button-component text="Danger" type="danger"></button-component>
+    <card-component content="I'm an example component."></card-component>
+  </div>
 </template>
 
 <script>
-    export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
-    }
+import CardComponent from './CardComponent.vue';
+import BadgeComponent from './BadgeComponent.vue';
+import ButtonComponent from './ButtonComponent.vue';
+export default {
+  name: 'ExampleComponent',
+  components: { CardComponent, BadgeComponent, ButtonComponent },
+  mounted() {
+    console.log('Component mounted.');
+  },
+};
 </script>
