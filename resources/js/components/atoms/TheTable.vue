@@ -14,8 +14,12 @@
                     {{ item[title] }}
                 </td>
                 <td width="120px" v-if="withAction">
-                    <the-button-vue type="danger" :icon="'trash'" @click.native="onClick(item, 'delete')" />
-                    <the-button-vue type="primary" :icon="'eye'" @click.native="onClick(item, 'detail')" />
+                    <the-button-vue type="danger" :icon="'trash'" @click.native="onClick(item, 'delete')">
+                        <i class="fas fa-trash"></i>
+                    </the-button-vue>
+                    <the-button-vue type="primary" :icon="'eye'" @click.native="onClick(item, 'detail')">
+                        <i class="fas fa-eye"></i>
+                    </the-button-vue>
                 </td>
             </tr>
         </tbody>

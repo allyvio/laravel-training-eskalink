@@ -1,6 +1,6 @@
 <template>
     <div class="form-floating mb-3">
-        <input :type="type" v-model="val" class="form-control" :placeholder="placeholder">
+        <input :type="type" v-model="valComputed" class="form-control" :placeholder="placeholder">
         <label>{{ label }}</label>
     </div>
 </template>
@@ -22,7 +22,7 @@ export default {
         }
     },
     computed: {
-        val: {
+        valComputed: {
             get() {
                 return this.value
             },

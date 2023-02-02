@@ -27,7 +27,7 @@ Route::get('address-belongsto-customers', [CustomerController::class, 'addresBel
 Route::put('dissociate/{id}', [CustomerController::class, 'dissociate']);
 
 // manajement
-Route::get('products', [ProductController::class, 'getProducts'])->middleware('auth:api');
+Route::get('products', [ProductController::class, 'getProducts']);
 Route::post('products-attach', [ProductController::class, 'productAttachTag']);
 Route::put('products-detach/{id}', [ProductController::class, 'productDetachTag']);
 Route::put('products-sync/{id}', [ProductController::class, 'productSynchTag']);

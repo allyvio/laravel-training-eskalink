@@ -1,7 +1,8 @@
 <template>
     <button :class="['btn', `btn-${type}`, !floating || 'bottom-right', !circle || 'rounded-circle']"
-        v-bind="{ 'data-bs-toggle': !modal || 'modal', 'data-bs-target': target}" type="button" v-html="icon ? `<i class='fa-solid fa-${icon}'></i>` : text
-        "></button>
+        v-bind="{ 'data-bs-toggle': !modal || 'modal', 'data-bs-target': target}" type="button">
+        <slot />
+    </button>
 </template>
 <script>
 export default {
